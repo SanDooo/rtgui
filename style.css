@@ -178,29 +178,70 @@ form {
 #filters-container {
   float: right;
   clear: both;
-  margin: 5px 10px 0px 0px;
-  padding: 0px;
+
+	*display: inline;
+  height: 24px;
+  width: 220px;
+
+  margin: 4px 10px 0px 0px;
+  padding: 0 0px 0 8px;
+  
+  color: #b2b2b2;
+  background-color: #343434;
+
+  border: 1px solid #212121;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+
+  -webkit-box-shadow: 1px 1px 1px #3e3e3e;
+  -moz-box-shadow: 1px 1px 1px #3e3e3e;
 }
-#filters-label {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-  position: relative;
-  top: 1px;
-}
+
 #filters {
   padding: 2px;
   margin: 0px;
-  border: 1px solid #1a1a1a;
-  border-right: none;
-  border-bottom: none;
   font-size: small;
   text-transform: none;
+  font-weight:bold;
 }
 #clear-filters img {
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   position: relative;
   top: 5px;
+}
+a.btn-search-go {
+  background: transparent url("./images/btn-search-go.gif") no-repeat 6px 1px;
+  float: right;
+  width: 26px;
+  height: 20px;
+  margin: 0px;
+  padding: 0px;
+  border-left: 1px solid #262626;
+}
+a.btn-search-go span {
+  display: none;
+}
+a.btn-search-go:hover {
+  background-position: -12px 1px;
+}
+#filters-container input {
+  float: left;
+  font: 14px arial, geneva, verdana, sans-serif;
+  color: #989898;
+  width: 180px;
+  background-color: #343434;
+  margin-top: 3px;
+  border:none;
+  
+  -webkit-box-shadow: none;
+  -moz-box-shadow:0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  color: #b2b2b2;
 }
 
 .group {
@@ -287,7 +328,7 @@ div.container {
   border: none;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
-  clear: both;
+  margin-top:67px;
 }
 div.namecol {
   width: 100%;
@@ -301,13 +342,13 @@ div.errorcol {
 }
 
 #torrents-header {
-  background: url('./images/bg-menu-main-tile.gif') repeat-x top center;
+  background: #262626 url('./images/bg-menu-main-tile.gif') repeat-x top center;
   border-top: 1px solid #383838;
+  height: 28px;
 }
 
 div.headcol {
   float: left;
-  background:   url('./images/bg-menu-main-tile.gif') repeat-x top center;
   color: #999;
   text-align: center;
 }
