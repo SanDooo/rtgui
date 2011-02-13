@@ -84,7 +84,7 @@ var current = {
 <![endif]-->
 <script type="text/javascript">
 var data = <?php echo $data_str; ?>;
-
+ 
 $(function() {
   $('#dialog').jqm({onHide: onHideDialog});
   updateTorrentsHTML(data, true);
