@@ -59,7 +59,8 @@ var config = {
   refreshInterval: <?php echo $refresh_interval; ?>,
   diskAlertThreshold: <?php echo $alertthresh; ?>,
   useGroups: <?php echo $use_groups ? 1 : 0; ?>,
-  debugTab: <?php echo $debugtab ? 1 : 0; ?>
+  debugTab: <?php echo $debugtab ? 1 : 0; ?>,
+  dateAddedFormat: '<?php echo addslashes($date_added_format); ?>'
 };
 var current = {
   view: 'main',
@@ -88,6 +89,13 @@ var data = <?php echo $data_str; ?>;
 $(function() {
   $('#dialog').jqm({onHide: onHideDialog});
   updateTorrentsHTML(data, true);
+  if(current.sortVar) {
+    $('a.sort').each(function() {
+      if($(this).attr('rel').split(':')[0] == current.sortVar) {
+        $(this).addClass(current.sortDesc ? 'sort-desc' : 'sort-asc');
+      }
+    });
+  }
   current.refreshIntervalID = setInterval(updateTorrentsData, config.refreshInterval);
 });
 </script>
@@ -183,7 +191,7 @@ if($debugtab) {
 // Generate header links
 // variable_name      => ColName:width:add-class (default :90px:[none])
 $cols = array(
-  '+name!'            => 'Name',
+  '+name!'            => 'Name:110',
   '+group'            => 'Grp',
   '+status'           => 'Status',
   '+percent_complete' => 'Done',
@@ -193,9 +201,9 @@ $cols = array(
   '-up_rate'          => 'Up',
   '+up_total!'        => 'Seeded',
   '+ratio!'           => 'Ratio:71',
-  '-peers_summary'    => 'Peers:106',
+  '-peers_summary'    => 'Peers:100',
   '+priority_str'     => 'Pri:72',
-  '+tracker_hostname' => 'Trk:131',
+  '+tracker_hostname' => 'Trk:116',
   '-date_added!'      => 'Date',
 );
 
@@ -225,7 +233,7 @@ foreach($cols as $k => $v) {
     echo "<div class=\"$class\" style=\"width: ${arr[1]}px;\">";
   }
   echo "<a class=\"sort\" href=\"#\" rel=\"$k:$order$reorder\">$arr[0]</a>";
-  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? "/" : "</div>\n");
+  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? '|' : "</div>\n");
 }
 ?>
 </div>

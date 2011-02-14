@@ -130,7 +130,7 @@ var templates = {
         (config.useGroups ? '<span class="group">(<a class="filter" href="#" id="@group" rel="group:$group">$group</a>)</span>' : ''),
       '</div>',
       '<div class="errorcol"><span id="@eta">$</span> <span id="@message">$</span></div>',
-      '<div class="datacol" style="width: 89px;">',
+      '<div class="datacol" style="width: 109px;">',
         '<a class="ajax" href="control.php?hash=$hash&amp;cmd=$start_stop_cmd">',
           '<img alt="$start_stop_cmd torrent" border="0" src="images/$start_stop_cmd.gif" width="16" height="16" />',
         '</a> ',
@@ -151,9 +151,9 @@ var templates = {
       '<div class="datacol" style="width: 89px;" id="@up_rate">$</div>',
       '<div class="datacol" style="width: 89px;" id="@up_total">$</div>',
       '<div class="datacol" style="width: 70px;" id="@ratio">$</div>',
-      '<div class="datacol" style="width: 105px;" id="@peers_summary">$</div>',
-      '<div class="datacol" style="width: 70px;" id="@priority_str">$</div>',
-      '<div class="datacollast" style="width: 128px; " id="@date_added">$</div>',
+      '<div class="datacol" style="width: 99px;" id="@peers_summary">$</div>',
+      '<div class="datacol" style="width: 71px;" id="@priority_str">$</div>',
+      '<div class="datacollast" style="width: 115px;" id="@date_added">$</div>',
       '<div class="spacer"> </div>',
     '</div>')
   
@@ -191,9 +191,7 @@ var formatHandlers = {
   },
   
   date_added: function(ts) {
-    var d = new Date(ts * 1000);
-    //return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear();
-    return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+    return date(config.dateAddedFormat, new Date(ts * 1000));
   },
   eta: function(n) {
     if(!(n = Math.round(n))) {
@@ -228,10 +226,10 @@ var formatHandlers = {
   
   percent_complete: function(n) {
     return [
-      Math.round(n*10)/10 + '%<br />',
+      Math.round(n*10)/10 + '%<br />', //' fix vim syntax highlighting (wtf)
       '<table align="center" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666" width="50"><tr>',
         '<td align="left"><img src="images/percentbar.gif" height="4" width="' + Math.round(n/2) + '"/></td>',
-      '</tr></table>'
+      '</tr></table>', //' fix vim syntax highlighting (wtf)
     ].join('\n');
   },
   bytes_remaining: formatBytes,
