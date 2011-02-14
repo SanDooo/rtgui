@@ -155,7 +155,7 @@ if(is_array($header_links) && count($header_links)) {
 
 <div id="filters-container"> 
 	<input type="text" name="search" id="filters" value="Filter" onfocus="if(this.value==&#39;Filter&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Filter&#39;;"> 
-	<a id="btn-search" href="#" class="btn-search-go"><span>Filter</span></a> 
+	<a id="clear-filters" href="#" class="btn-clear-filters"><span>Clear</span></a> 
 </div> 
                 
                 
