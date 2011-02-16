@@ -59,8 +59,7 @@ var config = {
   refreshInterval: <?php echo $refresh_interval; ?>,
   diskAlertThreshold: <?php echo $alertthresh; ?>,
   useGroups: <?php echo $use_groups ? 1 : 0; ?>,
-  debugTab: <?php echo $debugtab ? 1 : 0; ?>,
-  dateAddedFormat: '<?php echo addslashes($date_added_format); ?>'
+  debugTab: <?php echo $debugtab ? 1 : 0; ?>
 };
 var current = {
   view: 'main',
@@ -85,29 +84,24 @@ var current = {
 <![endif]-->
 <script type="text/javascript">
 var data = <?php echo $data_str; ?>;
- 
+
 $(function() {
   $('#dialog').jqm({onHide: onHideDialog});
   updateTorrentsHTML(data, true);
-  if(current.sortVar) {
-    $('a.sort').each(function() {
-      if($(this).attr('rel').split(':')[0] == current.sortVar) {
-        $(this).addClass(current.sortDesc ? 'sort-desc' : 'sort-asc');
-      }
-    });
-  }
-  current.refreshTimeoutID = window.setTimeout(updateTorrentsData, config.refreshInterval);
+  current.refreshIntervalID = setInterval(updateTorrentsData, config.refreshInterval);
 });
 </script>
 <title><?php echo $site_title; ?></title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div id="wrap">
-    <form action="control.php" method="post" name="control" id="control-form">
-      <div id="header">
-        <div id="error"></div>
-        <h1><a href="./">rt<span class=green>gui</span></a></h1><br/>
+<div id="wrap">
+<div id="header">
+  <div id="error"></div>
+
+  <div id="header">
+  
+    <h1><a href="./">rt<span class=green>gui</span></a></h1><br/>
 <?php
 if(is_array($header_links) && count($header_links)) {
   echo "<div id=\"header-links\">\n(Links: \n";
@@ -122,58 +116,50 @@ if(is_array($header_links) && count($header_links)) {
   echo ")\n</div>\n";
 }
 ?>
-        <!--[if lt IE 8]>
-          <span id="ie">
-            Please, go get a
-            <a href="http://www.google.com/chrome">real</a>
-            <a href="http://www.mozilla.com/firefox">browser</a>...
-          </span>
-        <![endif]-->
-
-        <div id="boxright">
-          <p>
-            Down:
-            <span class="inline download" id="total_down_rate">??</span>
-            <span class="smalltext" id="total_down_limit">??</span>
-            &nbsp;&nbsp;&nbsp;
-            Up:
-            <span class="inline upload" id="total_up_rate">??</span>
-            <span class="smalltext" id="total_up_limit">??</span>
-          </p>
+    <!--[if lt IE 8]>
+      <span id="ie">
+        Please, go get a
+        <a href="http://www.google.com/chrome">real</a>
+        <a href="http://www.mozilla.com/firefox">browser</a>...
+      </span>
+    <![endif]-->
+    
+    <div id="boxright">
+      <p>
+        Down: 
+        <span class="inline download" id="total_down_rate">??</span>
+        <span class="smalltext" id="total_down_limit">??</span>
+        &nbsp;&nbsp;&nbsp;
+        Up: 
+        <span class="inline upload" id="total_up_rate">??</span>
+        <span class="smalltext" id="total_up_limit">??</span>
+      </p>
 <?php if(isset($downloaddir)) { ?>
-          <div>
-            Disk Free: <span id="disk_free">??</span>
-            / <span id="disk_total">??</span>
-            (<span id="disk_percent">??</span>)
-          </div>
+      <div>
+        Disk Free: <span id="disk_free">??</span>
+        / <span id="disk_total">??</span>
+        (<span id="disk_percent">??</span>)
+      </div>
 <?php } ?>
-          <p>
-            Showing <span id="t-count-visible">??</span>
-            of <span id="t-count-all">??</span> torrents
-            | <a class="dialog" rel="400:300" href="settings.php">Settings</a>
-            | <a class="dialog" rel="700:500" href="add-torrents-form.php">Add torrent(s)</a>
-          </p>
-        </div><!-- id="boxright" -->
+      <p>
+        Showing <span id="t-count-visible">??</span> 
+        of <span id="t-count-all">??</span> torrents
+        | <a class="dialog" rel="400:300" href="settings.php">Settings</a>
+        | <a class="dialog" rel="700:500" href="add-torrents-form.php">Add torrent(s)</a>
+      </p>
+    </div><!-- id="boxright" -->
+  </div><!-- id="header" -->
 
-      </div><!-- id="header" -->
+<form action="control.php" method="post" name="control" id="control-form">
+<div id="navcontainer">
 
-<<<<<<< HEAD
 <div id="filters-container"> 
 	<input type="text" name="search" id="filters" value="Filter" onfocus="if(this.value==&#39;Filter&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Filter&#39;;"> 
-	<a id="clear-filters" href="#" class="btn-clear-filters"><span>Clear</span></a> 
+	<a id="btn-search" href="#" class="btn-search-go"><span>Filter</span></a> 
 </div> 
                 
                 
 <ul id="navlist">
-=======
-      <div id="navcontainer">
-        <div id="filters-container">
-          <span id="filters-label" class="gray-text">Filter:</span>
-          <input type="text" id="filters" value="" />
-          <a href="#" id="clear-filters"><img src="images/cross.png" /></a>
-        </div>
-        <ul id="navlist">
->>>>>>> 74b93fe7755c85abb963e733815ea6614cf78113
 <?php
 $views = array('All', 'Started', 'Stopped', 'Active', 'Inactive', 'Complete', 'Incomplete', 'Seeding');
 foreach($views as $name) {
@@ -182,20 +168,22 @@ foreach($views as $name) {
   echo "<li><a class=\"$class\" href=\"#\" rel=\"$view\">$name</a></li>\n";
 }
 if($debugtab) {
-   echo "<li><a href=\"#\" id=\"debug-tab\">Debug</a></li>\n";
+   echo "<li><a href=\"#\" id=\"debug-tab\" class=\"current\">Debug</a></li>\n";
 }
 ?>
-        </ul>
-      </div><!-- id="navcontainer" -->
+</ul>
 
-      <div id="dialog" class="jqmWindow"></div>
+</div>
 
-      <div id="torrents-header">
+<div id="dialog" class="jqmWindow"></div>
+
+
+<div id="torrents-header">
 <?php
 // Generate header links
 // variable_name      => ColName:width:add-class (default :90px:[none])
 $cols = array(
-  '+name!'            => 'Name:110',
+  '+name!'            => 'Name',
   '+group'            => 'Grp',
   '+status'           => 'Status',
   '+percent_complete' => 'Done',
@@ -205,9 +193,9 @@ $cols = array(
   '-up_rate'          => 'Up',
   '+up_total!'        => 'Seeded',
   '+ratio!'           => 'Ratio:71',
-  '-peers_summary'    => 'Peers:100',
+  '-peers_summary'    => 'Peers:106',
   '+priority_str'     => 'Pri:72',
-  '+tracker_hostname' => 'Trk:116',
+  '+tracker_hostname' => 'Trk:131',
   '-date_added!'      => 'Date',
 );
 
@@ -224,7 +212,7 @@ foreach($cols as $k => $v) {
     $reorder = ':true';
     $k = substr($k, 0, strlen($k)-1);
   }
-
+  
   if($k == 'group' && !$use_groups) {
     continue;
   }
@@ -237,61 +225,66 @@ foreach($cols as $k => $v) {
     echo "<div class=\"$class\" style=\"width: ${arr[1]}px;\">";
   }
   echo "<a class=\"sort\" href=\"#\" rel=\"$k:$order$reorder\">$arr[0]</a>";
-  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? '|' : "</div>\n");
+  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? "/" : "</div>\n");
 }
 ?>
-      </div><!-- id="torrents-header" -->
+</div>
+<div class="spacer"></div>
 
-      <div class="spacer"></div>
+</div> <!-- id=fixedheader -->
 
-      <div class="container">
+<div class="container">
 <?php if($debugtab) { ?>
-        <pre id="debug" style="display: none;">&nbsp;</pre>
+<pre id="debug">&nbsp;</pre>
 <?php } ?>
-        <div id="torrents">
-          <div class="row" id="t-none">
-            <div class="namecol" align="center"><p>&nbsp;</p>No torrents to display.<p>&nbsp;</p></div>
-          </div>
-        </div>
-      </div><!-- class="container" -->
 
-      <div class="bottomtab">
-        <input type="button" class="select-all" value="Select All" />
-        <input type="button" class="unselect-all" value="Unselect All" />
-        <select name="bulkaction" >
-          <optgroup label="With Selected...">
-            <option value="stop">Stop</option>
-            <option value="start">Start</option>
-            <option value="delete">Delete</option>
-            <option value="hashcheck">Re-check</option>
-          </optgroup>
-          <optgroup label="Set Priority...">
-            <option value="pri_high">High</option>
-            <option value="pri_normal">Normal</option>
-            <option value="pri_low">Low</option>
-            <option value="pri_off">Off</option>
-          </optgroup>
-        </select>
-        <input type="submit" value="Go" />
-        <input type="checkbox" id="leave-checked" name="leave_checked" />
-        <label for="leave-checked" class="gray-text">Leave torrents checked</label>
-      </div><!-- class="bottomtab" -->
+<div id="torrents">
 
-    </form><!-- id="control-form" -->
+<div class='row1' id="t-none">
+  <div class='namecol' align='center'><p>&nbsp;</p>No torrents to display.<p>&nbsp;</p></div>
+</div>
 
-    <div id="footer">
-      <div align="center" class="smalltext">
-        <a href="http://libtorrent.rakshasa.no/" target="_blank">
-          rTorrent client <?php echo rtorrent_xmlrpc('system.client_version'); ?>
-           / lib <?php echo rtorrent_xmlrpc('system.library_version'); ?>
-        </a> |
-        <a href="rssfeed.php">RSS Feed</a> |
-        Page created in <?php echo round(microtime(true) - $execstart, 3) ?> secs.<br />
-        Based on <a href="http://rtgui.googlecode.com" target="_blank">rtGui v0.2.7</a> by Simon Hall &copy; 2007-2008<br />
-        Modifications by James Nylen &copy; 2010-2011 | Theme by Gurvan Guezennec &copy; 2011
-      </div>
-    </div><!-- id="footer" -->
+</div><!-- id="torrents" -->
 
-  </div><!-- id="wrap" -->
+</div><!-- id="container" -->
+
+<div class="bottomtab">
+  <input type="button" class="select-all" value="Select All" />
+  <input type="button" class="unselect-all" value="Unselect All" />
+
+  <select name="bulkaction" >
+    <optgroup label="With Selected...">
+      <option value="stop">Stop</option>
+      <option value="start">Start</option>
+      <option value="delete">Delete</option>
+      <option value="hashcheck">Re-check</option>
+    </optgroup>
+    <optgroup label="Set Priority...">
+      <option value="pri_high">High</option>
+      <option value="pri_normal">Normal</option>
+      <option value="pri_low">Low</option>
+      <option value="pri_off">Off</option>
+    </optgroup>
+  </select>
+  <input type="submit" value="Go" />
+  
+  <input type="checkbox" id="leave-checked" name="leave_checked" />
+  <label for="leave-checked" class="gray-text">Leave torrents checked</label>
+</div><!-- class="bottomtab" -->
+
+</form>
+<div id="footer">
+<div align="center" class="smalltext">
+<a href="http://libtorrent.rakshasa.no/" target="_blank">
+  rTorrent client <?php echo rtorrent_xmlrpc('system.client_version'); ?>
+   / lib <?php echo rtorrent_xmlrpc('system.library_version'); ?>
+</a> | 
+<a href="rssfeed.php">RSS Feed</a> | 
+Page created in <?php echo round(microtime(true) - $execstart, 3) ?> secs.<br />
+Based on <a href="http://rtgui.googlecode.com" target="_blank">rtGui v0.2.7</a> by Simon Hall &copy; 2007-2008<br />
+Modifications by James Nylen &copy; 2010-2011 | Theme by Gurvan Guezennec &copy; 2011
+</div>
+</div>
+</div>
 </body>
 </html>
