@@ -90,21 +90,7 @@ form {
   border-top: none;
   -webkit-box-shadow: 0px 0px 20px #1a1a1a;
   -moz-box-shadow: 0px 0px 10px #1a1a1a;
-}
-
-#header {
-  top: 0px;
-  width: 1100px;
-  height: 146px;
-  border-bottom: 1px solid #383838;
-  background: #262626 url('./images/bg-wrap.gif') no-repeat top center;
-  clear: both;
-}
-
-#footer {
-  padding: 4px;
-  background: #0d0d0d url('./images/bg-footer.jpg') no-repeat top center;
-  color: #7a7a7a;
+  background-color:red;
 }
 
 #header {
@@ -112,11 +98,14 @@ form {
   height: 80px;
   margin: 0px;
   padding: 0px;
+
+  background: #262626 url('./images/bg-header.gif') repeat-x top left;
   border-bottom: 1px solid #262626;
+  clear: both;
 }
 #header h1 {
-  margin: 0px 0px 0px 18px;
-  padding: 0;
+  margin: 2px 0px 0px 18px;
+  padding: 0px;
   position: absolute;
   font: bolder 5.1em Tahoma, Arial, Sans-serif;
   letter-spacing: -5px;
@@ -125,7 +114,6 @@ form {
   *font-size: 13px;
   color: #b2b2b2;
   text-shadow: -1px -1px 1px #b3b3b3;
-  font-weight: bold;
 }
 #header a:hover {
   text-decoration: none;
@@ -156,6 +144,12 @@ form {
   font-size: 80%;
 }
 
+#footer {
+  padding: 4px;
+  background: #0d0d0d url('./images/bg-footer.jpg') no-repeat top center;
+  color: #7a7a7a;
+}
+
 .gray-text {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -167,10 +161,10 @@ form {
 
 #navcontainer {
   position: relative;
-  background:   url('./images/bg-menu-main-tile.gif') repeat-x top center;
-  height: 35px;
-  border-top: 1px solid #383838;
-  border-bottom: 1px solid #1a1a1a;
+  background: #c0c0c0 url('./images/bg-menu-tile2.gif') repeat-x bottom left;
+  height: 28px;
+  border-top: 1px solid #919191;
+  border-bottom: 1px solid #2d2d2d;
   margin: 0px;
   padding: 0px;
 }
@@ -180,25 +174,29 @@ form {
   clear: both;
 
   *display: inline;
-  height: 23px;
+  height: 21px;
   width: 220px;
 
-  margin: 5px 10px 0px 0px;
+  margin: 2px 10px 0px 0px;
   padding: 0px 0px 0px 8px;
   
   color: #b2b2b2;
-  background-color: #343434;
+  background: #343434 url('./images/bg-menu-tile2.gif') repeat-x bottom left;
 
-  border: 1px solid #262626;
-  border-right: none;
-  border-bottom: none;
-  border-radius: 0.7em;
-  -webkit-border-radius: 0.7em;
-  -moz-border-radius: 0.7em;
+  border: 1px solid #363636;
+  border-right: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+  border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  -moz-border-radius: 0.6em;
 
-  -webkit-box-shadow: 1px 1px 1px #4c4c4c;
-  -moz-box-shadow: 1px 1px 1px #4c4c4c;
+  -webkit-box-shadow: 0px 1px 1px #6c6c6c;
+  -moz-box-shadow: 0px 1px 1px #6c6c6c;
 }
+#filters-container:hover {
+  background-color: #343434;
+}
+
 #filters {
   padding: 2px;
   margin: 0px;
@@ -214,14 +212,14 @@ form {
 }
 #filters-container input {
   float: left;
-  font: 14px arial, geneva, verdana, sans-serif;
+  font: 12px arial, geneva, verdana, sans-serif;
   width: 185px;
-  background-color: #343434;
+  background:transparent;
   margin-top: 2px;
-  color: #919191;
+  color: #c2c2c2;
   border:none;
-  border-right: 1px solid #3c3c3c;
-  
+  border-right: 1px solid #5c5c5c;
+  text-shadow: 0px -1px 0px #363636;
   -webkit-box-shadow: none;
   -moz-box-shadow:0;
   -webkit-border-radius: 0;
@@ -232,7 +230,7 @@ a.btn-clear-filters {
   float: right;
   width: 16px;
   height: 16px;
-  margin: 4px 6px 0px 0px;
+  margin: 2px 6px 0px 0px;
   padding: 0px;
 }
 a.btn-clear-filters span {
@@ -247,7 +245,7 @@ a.btn-clear-filters:hover {
 }
 
 #navlist {
-  padding: 5px 0px 0px 10px;
+  padding: 3px 0px 0px 10px;
   margin: 0px 0px 0px 0px;
 }
 
@@ -260,19 +258,19 @@ a.btn-clear-filters:hover {
 }
 
 #navlist li a {
-  padding: 5px 1em 4px 1em;
+  padding: 2px 1em 2px 1em;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   *font-size: 15px;
   font-weight: bold;
-  line-height: 26px;
-  color: #b2b2b2;
+  line-height: 21px;
+  color: #e0e0e0;
   text-transform: uppercase;
-  text-shadow: 0 -2px 1px #1d1d1d;
+  text-shadow: 0 -1px 1px black;
 }
 
-#navlist li a:link { color: #b2b2b2; }
-#navlist li a:visited { color: #b2b2b2; }
+#navlist li a:link { color: #e0e0e0; }
+#navlist li a:visited { color: #e0e0e0; }
 
 #navlist li a.view.current:hover {
   cursor: default;
@@ -283,7 +281,7 @@ a.btn-clear-filters:hover {
   border-right: none;
   border-bottom: none;
   margin: -1px;
-  margin-right: 0px;
+  padding: 2px 1.1em 4px 1em;
   -webkit-box-shadow: 1px 1px 1px #606060;
   -moz-box-shadow: 1px 1px 1px #606060;
   border-radius: 1em;
@@ -326,7 +324,7 @@ div.container {
   border: none;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
-  margin-top:67px;
+  margin-top:54px;
 }
 div.namecol {
   width: 100%;
@@ -340,28 +338,32 @@ div.errorcol {
 }
 
 #torrents-header {
-  background: #262626 url('./images/bg-menu-main-tile.gif') repeat-x top center;
-  border-top: 1px solid #383838;
-  height: 28px;
+  background: #b1b1b1 url('./images/bg-menu-tile2.gif') repeat-x top left;
+  border-top: 1px solid #919191;
+  border-bottom: 1px solid #2d2d2d;
+  height: 22px;
 }
 
 div.headcol {
   float: left;
   color: #999;
+  margin-top: 2px;
+  margin-bottom: 3px;
   text-align: center;
+  border-right: 1px solid #555;
 }
 div.headcol a, div.headrow a, div.headcollast a {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 11px;
   *font-size: 12px;
-  line-height: 27px;
-  color: #b2b2b2;
+  line-height: 19px;
+  color: #d2d2d2;
   text-transform: uppercase;
-  text-shadow: 0 -2px 1px #1d1d1d;
+  text-shadow: 1px -1px 0px #262626;
   font-weight: bold;
 }
 div.headcol a:hover, div.headrow a:hover, div.headcollast a:hover {
-  color: #f7f6f6;
+  color: #e0e0e0;
   text-decoration: none;
 }
 div.headcollast {
@@ -437,7 +439,7 @@ div.modal {
 }
 .modal #navcontainer {
   background:   #262626;
-  height: 35px;
+  /*height: 35px;*/
   border-top: 1px solid #383838;
   border: 1px solid #383838;
   border-bottom: 1px solid #1a1a1a;
@@ -602,11 +604,11 @@ text-decoration:none;
   border: none;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ccc;
-  background: #eee url('./images/bg-row-light.gif') repeat-x top left;
+  background: #eee url('./images/bg-row-tile.gif') repeat-x bottom left;
 }
 .row1:hover, .row2:hover {
   border-bottom: 1px solid #aaa;
-  background: #ddd url('./images/bg-row-mid.gif') repeat-x top left;
+  background: #ddd url('./images/bg-row-light.gif') repeat-x top left;
 }
 .buttonstart {
   background: url('images/start.gif') no-repeat center left;

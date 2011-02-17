@@ -96,7 +96,6 @@ $(function() {
 </head>
 <body>
 <div id="wrap">
-<div id="header">
   <div id="error"></div>
 
   <div id="header">
@@ -195,7 +194,7 @@ $cols = array(
   '+ratio!'           => 'Ratio:71',
   '-peers_summary'    => 'Peers:106',
   '+priority_str'     => 'Pri:72',
-  '+tracker_hostname' => 'Trk:131',
+  '+tracker_hostname' => 'Trk:119',
   '-date_added!'      => 'Date',
 );
 
@@ -225,13 +224,12 @@ foreach($cols as $k => $v) {
     echo "<div class=\"$class\" style=\"width: ${arr[1]}px;\">";
   }
   echo "<a class=\"sort\" href=\"#\" rel=\"$k:$order$reorder\">$arr[0]</a>";
-  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? "/" : "</div>\n");
+  echo ($k == 'tracker_hostname' || ($k == 'name' && $use_groups) ? " / " : "</div>\n");
 }
 ?>
 </div>
 <div class="spacer"></div>
 
-</div> <!-- id=fixedheader -->
 
 <div class="container">
 <?php if($debugtab) { ?>
