@@ -100,7 +100,7 @@ $(function() {
 
   <div id="header">
   
-    <h1><a href="./">rt<span class=green>gui</span></a></h1><br/>
+    <h1><a href="./">rt<span class="green">gui</span></a></h1><br/>
 <?php
 if(is_array($header_links) && count($header_links)) {
   echo "<div id=\"header-links\">\n(Links: \n";
@@ -153,7 +153,7 @@ if(is_array($header_links) && count($header_links)) {
 <div id="navcontainer">
 
 <div id="filters-container"> 
-	<input type="text" name="search" id="filters" value="Filter" onfocus="if(this.value==&#39;Filter&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Filter&#39;;"> 
+	<input type="text" name="search" id="filters" value="Filter" onfocus="if(this.value==&#39;Filter&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Filter&#39;;" /> 
 	<a id="clear-filters" href="#" class="btn-clear-filters"><span>Clear</span></a> 
 </div> 
                 

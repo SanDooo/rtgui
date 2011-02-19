@@ -43,16 +43,15 @@ h1,h2,h3,h4,h5,h6 {
   margin: 0px 0px 0px 0px;
 }
 select {
-  color: #333;
   text-align: left;
-  margin-left: 10px;
 }
 select,input {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 9px;
-  *font-size: 10px;
-  line-height: 12px;
-  text-transform: uppercase;
+  font-size: 10px;
+  *font-size: 11px;
+  line-height: 14px;
+  font-weight: bold;
+/*  text-transform: uppercase;
   text-shadow: 0 -1px 1px #1d1d1d;
 
   background-color: #333;
@@ -66,6 +65,30 @@ select,input {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
   color: #b2b2b2;
+*/
+
+  background:transparent;
+  margin-top: 1px;
+
+  text-shadow: 0px 1px 1px #262626;
+
+  margin: 0px;
+  padding: 2px 8px;
+  
+  color: #e8e8e8;
+  background: #343434 url('./images/bg-button.gif') repeat-x top left;
+
+  border: 1px solid #6f6f6f;
+  border-right: 1px solid #515151;
+  border-bottom: 1px solid #515151;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-box-shadow: 0px 2px 2px #262626;
+  -moz-box-shadow: 0px 1px 1px #262626;
+}
+input:hover {
+  background: #343434 url('./images/bg-button-hover.gif') repeat-x top left;
 }
 select:hover {
   background-color: #3a3a3a;
@@ -87,6 +110,7 @@ form {
   padding: 0px;
   text-align: left;
   border: 1px solid #4c4c4c;
+  border-bottom: 1px solid #383838;
   border-top: none;
   -webkit-box-shadow: 0px 0px 20px #1a1a1a;
   -moz-box-shadow: 0px 0px 20px #1a1a1a;
@@ -145,9 +169,8 @@ form {
 }
 
 #footer {
-  background: green url('./images/bg-header2.gif') no-repeat 0px -26px;
+  background: #262626 url('./images/bg-header2.gif') no-repeat 0px -26px;
   color: #9c9c9c;
-  border:none;
 }
 
 #footer a {
@@ -351,10 +374,10 @@ div.errorcol {
 }
 
 #torrents-header {
-  background: #b1b1b1 url('./images/bg-menu-tile2.gif') repeat-x top left;
-  border-top: 1px solid #919191;
+  background: #b1b1b1 url('./images/bg-menu-tile2.gif') repeat-x bottom left;
+  border-top: 1px solid #717171;
   border-bottom: 1px solid #2d2d2d;
-  height: 22px;
+  height: 18px;
 }
 
 div.headcol {
@@ -367,16 +390,16 @@ div.headcol {
 }
 div.headcol a, div.headrow a, div.headcollast a {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  *font-size: 12px;
-  line-height: 19px;
+  font-size: 10px;
+  *font-size: 11px;
+  line-height: 17px;
   color: #d2d2d2;
   text-transform: uppercase;
-  text-shadow: 1px -1px 0px #262626;
+  text-shadow: 1px -1px 0px #383838;
   font-weight: bold;
 }
 div.headcol a:hover, div.headrow a:hover, div.headcollast a:hover {
-  color: #e0e0e0;
+  color: #d2d2d2;
   text-decoration: none;
 }
 div.headcollast {
