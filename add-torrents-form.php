@@ -8,19 +8,23 @@ require_once 'functions.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="favicon.ico" />
 <title>rtGui</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery.hsjn.js"></script>
-<script type="text/javascript" src="jquery.form.js"></script>
-<script type="text/javascript" src="jquery.MultiFile.js"></script>
-<script type="text/javascript" src="json2.min.js"></script>
-<script type="text/javascript" src="php.min.js"></script>
-<script type="text/javascript" src="add-torrents.js"></script>
+<?php
+include_stylesheet('style.css', true);
+include_stylesheet('dialog.css', true);
+include_script('jquery.js');
+include_script('jquery.hsjn.js');
+include_script('jquery.form.js');
+include_script('jquery.MultiFile.js');
+include_script('json2.min.js');
+include_script('php.min.js');
+include_script('add-torrents.js');
+?>
 </head>
 
-<body>
-<div class="modal">
+<body class="modal">
+<?php if(!$_GET['dialog']) { ?>
 <h3>Add torrent(s)</h3>
+<?php } ?>
 
 <div id='options'>
 <form id="form1" method="post" enctype="multipart/form-data" action="add-torrents.php">
@@ -32,7 +36,7 @@ require_once 'functions.php';
   </tr>
   <tr class="controls">
     <td class="left">Upload file(s):</td>
-    <td class="right input"><input name="add_files[]" type="file" class="multi" /></td>
+    <td class="right input"><input name="add_files[]" type="file" class="multi themed" /></td>
   </tr>
 <?php if($use_groups) { ?>
   <tr class="controls">
@@ -49,11 +53,11 @@ require_once 'functions.php';
 <?php } ?>
   <tr id="row-next">
     <td class="left"></td>
-    <td class="right"><input type="submit" id="next" value="Next &gt;&gt;" /></td>
+    <td class="right"><input type="submit" id="next" class="themed" value="Next &gt;&gt;" /></td>
   </tr>
   <tr id="row-back" class="hidden">
     <td class="left"></td>
-    <td class="right"><input type="button" id="back" value="&lt;&lt; Back" /></td>
+    <td class="right"><input type="button" id="back" class="themed" value="&lt;&lt; Back" /></td>
   </tr>
 </table>
 </form>
@@ -66,10 +70,9 @@ require_once 'functions.php';
   
   <input type="hidden" name="action" value="add" />
   <input type="hidden" name="group" value="" />
-  <input type="submit" id="add" value="Add selected" disabled="disabled" />
+  <input type="submit" id="add" class="themed" value="Add selected" disabled="disabled" />
 </form>
 
-</div>
 </div>
 </body>
 </html>

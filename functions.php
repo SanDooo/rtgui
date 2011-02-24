@@ -32,6 +32,30 @@ if($scgi_local) {
   $scgi_port = null;
 }
 
+function file_path_mtime($filename) {
+  return $filename . '?_=' . filemtime($filename);
+}
+
+function include_script($script_filename) {
+  echo '<script type="text/javascript" src="'
+    . file_path_mtime($script_filename) . "\"></script>\n";
+}
+
+function include_stylesheet($stylesheet_filename, $use_theme=false) {
+  global $theme;
+  if($use_theme) {
+    foreach(array($theme, 'base') as $test) {
+      $new_filename = "themes/$test/$stylesheet_filename";
+      if(file_exists($new_filename)) {
+        $stylesheet_filename = $new_filename;
+        break;
+      }
+    }
+  }
+  echo '<link rel="stylesheet" type="text/css" href="'
+    . file_path_mtime($stylesheet_filename) . "\" />\n";
+}
+
 require_once 'session.php';
 
 function do_xmlrpc($request) {
@@ -124,6 +148,10 @@ function get_all_torrents($torrents_only=false, $view='main') {
     $t['percent_complete'] = $t['completed_bytes'] / $t['size_bytes'] * 100;
     $t['bytes_remaining'] = $t['size_bytes'] - $t['completed_bytes'];
     
+    if($t['message'] == 'Tracker: [Tried all trackers.]') {
+      $t['message'] = '';
+    }
+
     if($t['is_active'] == 0) {
       $t['status'] = 'Stopped';
     }
